@@ -2,8 +2,8 @@ require "sk_progress_bar/version"
 
 module SkProgressBar
   # Update Progress Bar
-  def self.update_progress_bar(percentage, message, jid=nil)
-    ActionCable.server.broadcast 'sk_progress_bar_channel',
+  def self.update_progress_bar(percentage, message, jid = nil, channel = `sk_progress_bar_channel`)
+    ActionCable.server.broadcast channel,
                                  progress_status: percentage,
                                  message:  message,
                                  sk_process_id: jid
